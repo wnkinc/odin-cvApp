@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../generalInfo.css";
 
 function GeneralInfo() {
   const [firstName, setFirstName] = useState("");
@@ -7,8 +8,9 @@ function GeneralInfo() {
   const [phone, setPhone] = useState("");
 
   return (
-    <section>
+    <section className="card">
       <input
+        className="generalInfo"
         type="text"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
@@ -17,6 +19,7 @@ function GeneralInfo() {
         required
       />
       <input
+        className="generalInfo"
         type="text"
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
@@ -25,6 +28,7 @@ function GeneralInfo() {
         required
       />
       <input
+        className="generalInfo"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -33,6 +37,7 @@ function GeneralInfo() {
         required
       />
       <input
+        className="generalInfo"
         type="tel"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
