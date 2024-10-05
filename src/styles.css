@@ -12,7 +12,9 @@
 }
 
 /* General input styling */
-.generalInfo {
+.generalInfo,
+.educationalExp,
+.practicalExp {
   background-color: #fff;
   padding: 15px;
   border: 1px solid #ddd;
@@ -25,14 +27,18 @@
 }
 
 /* Lifting effect on hover */
-.generalInfo:focus {
+.generalInfo:focus,
+.educationalExp:focus,
+.practicalExp:focus {
   outline: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
 }
 
 /* Input hover effect */
-.generalInfo:hover {
+.generalInfo:hover,
+.educationalExp:hover,
+.practicalExp:hover {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
