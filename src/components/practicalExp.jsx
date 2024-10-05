@@ -17,7 +17,6 @@ function PracticalExp() {
         onChange={(e) => setCompanyName(e.target.value)}
         placeholder="Enter company name"
         id="companyName"
-        required
       />
       <input
         className="practicalExp"
@@ -26,16 +25,13 @@ function PracticalExp() {
         onChange={(e) => setPositionTitle(e.target.value)}
         placeholder="Enter your position title"
         id="positionTitle"
-        required
       />
-      <input
+      <textarea
         className="practicalExp"
-        type="text"
         value={responsibilities}
         onChange={(e) => setResponsibilities(e.target.value)}
         placeholder="Enter your responsibilities"
         id="responsibilities"
-        required
       />
       <input
         className="practicalExp"
@@ -44,7 +40,6 @@ function PracticalExp() {
         onChange={(e) => setStartOfJob(e.target.value)}
         placeholder="Enter your starting year of job"
         id="startOfJob"
-        required
       />
       <input
         className="practicalExp"
@@ -53,7 +48,6 @@ function PracticalExp() {
         onChange={(e) => setEndOfJob(e.target.value)}
         placeholder="Enter your ending year of job"
         id="endOfJob"
-        required
       />
     </section>
   );

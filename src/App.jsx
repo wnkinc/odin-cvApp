@@ -1,35 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import GeneralInfo from "./components/generalInfo.jsx";
+import EducationalExp from "./components/educationalExp.jsx";
+import PracticalExp from "./components/practicalExp.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // State management for all form inputs
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [responsibilities, setResponsibilities] = useState("");
+
+  // State to track which component is currently active
+  const [currentComponent, setCurrentComponent] = useState("GeneralInfo");
+
+  // Function to render the current component
+  const renderComponent = () => {
+    switch (currentComponent) {
+      case "GeneralInfo":
+        return (
+          <GeneralInfo
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            phone={phone}
+            setFirstName={setFirstName}
+            setLastName={setLastName}
+            setEmail={setEmail}
+            setPhone={setPhone}
+          />
+        );
+      case "EducationalExp":
+        return <EducationalExp />;
+      case "PracticalExp":
+        return (
+          <PracticalExp
+            responsibilities={responsibilities}
+            setResponsibilities={setResponsibilities}
+          />
+        );
+      default:
+        return <GeneralInfo />;
+    }
+  };
 
   return (
-    <>
+    <div>
+      {/* Render the current component */}
+      {renderComponent()}
+
+      {/* Buttons to switch components */}
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={() => setCurrentComponent("GeneralInfo")}>
+          General Info
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <button onClick={() => setCurrentComponent("EducationalExp")}>
+          Educational Experience
+        </button>
+        <button onClick={() => setCurrentComponent("PracticalExp")}>
+          Practical Experience
+        </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -1,12 +1,15 @@
-import { useState } from "react";
 import "../styles.css";
 
-function GeneralInfo() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-
+function GeneralInfo({
+  firstName,
+  lastName,
+  email,
+  phone,
+  setFirstName,
+  setLastName,
+  setEmail,
+  setPhone,
+}) {
   return (
     <section className="card">
       <input
