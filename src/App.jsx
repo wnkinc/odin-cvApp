@@ -18,6 +18,14 @@ function App() {
     schoolEndYear: "",
   });
 
+  const [practicalExp, setPracticalExp] = useState({
+    companyName: "",
+    positionTitle: "",
+    responsibilities: "",
+    workStartYear: "",
+    workEndYear: "",
+  });
+
   const [currentComponent, setCurrentComponent] = useState("GeneralInfo");
 
   const handleGeneralInfoChange = (e) => {
@@ -28,6 +36,11 @@ function App() {
   const handleEducationalExpChange = (e) => {
     const { id, value } = e.target;
     setEducationalExp((prevData) => ({ ...prevData, [id]: value }));
+  };
+
+  const handlePracticalExpChange = (e) => {
+    const { id, value } = e.target;
+    setPracticalExp((prevData) => ({ ...prevData, [id]: value }));
   };
 
   const renderComponent = () => {
@@ -47,7 +60,12 @@ function App() {
           />
         );
       case "PracticalExp":
-        return <PracticalExp />;
+        return (
+          <PracticalExp
+            formData={practicalExp}
+            onChange={handlePracticalExpChange}
+          />
+        );
     }
   };
 

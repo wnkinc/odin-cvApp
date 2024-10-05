@@ -1,56 +1,54 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
 import "../styles.css";
 
-function PracticalExp() {
-  const [companyName, setCompanyName] = useState("");
-  const [positionTitle, setPositionTitle] = useState("");
-  const [responsibilities, setResponsibilities] = useState("");
-  const [startOfJob, setStartOfJob] = useState("");
-  const [endOfJob, setEndOfJob] = useState("");
-
+function PracticalExp({ formData, onChange }) {
   return (
-    <section className="card">
-      <input
-        className="practicalExp"
-        type="text"
-        value={companyName}
-        onChange={(e) => setCompanyName(e.target.value)}
-        placeholder="Enter company name"
-        id="companyName"
-      />
-      <input
-        className="practicalExp"
-        type="text"
-        value={positionTitle}
-        onChange={(e) => setPositionTitle(e.target.value)}
-        placeholder="Enter your position title"
-        id="positionTitle"
-      />
-      <textarea
-        className="practicalExp"
-        value={responsibilities}
-        onChange={(e) => setResponsibilities(e.target.value)}
-        placeholder="Enter your responsibilities"
-        id="responsibilities"
-      />
-      <input
-        className="practicalExp"
-        type="text"
-        value={startOfJob}
-        onChange={(e) => setStartOfJob(e.target.value)}
-        placeholder="Enter your starting year of job"
-        id="startOfJob"
-      />
-      <input
-        className="practicalExp"
-        type="text"
-        value={endOfJob}
-        onChange={(e) => setEndOfJob(e.target.value)}
-        placeholder="Enter your ending year of job"
-        id="endOfJob"
-      />
-    </section>
+    <form className="card">
+      {[
+        "companyName",
+        "positionTitle",
+        "responsibilities",
+        "workStartYear",
+        "workEndYear",
+      ].map((field) =>
+        field === "responsibilities" ? (
+          <textarea
+            key={field}
+            className="practicalExp"
+            value={formData[field]}
+            onChange={onChange}
+            placeholder={`Enter your ${field}`}
+            id={field}
+            rows="5"
+            cols="33"
+            required
+          />
+        ) : (
+          <input
+            key={field}
+            className="practicalExp"
+            type="text"
+            value={formData[field]}
+            onChange={onChange}
+            placeholder={`Enter your ${field}`}
+            id={field}
+            required
+          />
+        )
+      )}
+    </form>
   );
 }
+
+PracticalExp.propTypes = {
+  formData: PropTypes.shape({
+    companyName: PropTypes.string,
+    positionTitle: PropTypes.string,
+    responsibilities: PropTypes.string,
+    workStartYear: PropTypes.string,
+    workEndYear: PropTypes.string,
+  }).isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default PracticalExp;
