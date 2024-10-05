@@ -1,55 +1,33 @@
 import "../styles.css";
+import PropTypes from "prop-types";
 
-function GeneralInfo({
-  firstName,
-  lastName,
-  email,
-  phone,
-  setFirstName,
-  setLastName,
-  setEmail,
-  setPhone,
-}) {
+function GeneralInfo({ formData, handleChange }) {
   return (
-    <section className="card">
-      <input
-        className="generalInfo"
-        type="text"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        placeholder="Enter your first name"
-        id="firstName"
-        required
-      />
-      <input
-        className="generalInfo"
-        type="text"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        placeholder="Enter your last name"
-        id="lastName"
-        required
-      />
-      <input
-        className="generalInfo"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email"
-        id="email"
-        required
-      />
-      <input
-        className="generalInfo"
-        type="tel"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        placeholder="Enter your phone number"
-        id="phone"
-        required
-      />
-    </section>
+    <form className="card">
+      {["firstName", "lastName", "email", "phone"].map((field) => (
+        <input
+          key={field}
+          className="generalInfo"
+          type={field === "email" ? "email" : "text"}
+          value={formData[field]}
+          onChange={handleChange}
+          placeholder={`Enter your ${field}`}
+          id={field}
+          required
+        />
+      ))}
+    </form>
   );
 }
+
+GeneralInfo.propTypes = {
+  formData: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+  }).isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default GeneralInfo;

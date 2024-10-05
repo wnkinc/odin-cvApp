@@ -4,52 +4,34 @@ import EducationalExp from "./components/educationalExp.jsx";
 import PracticalExp from "./components/practicalExp.jsx";
 
 function App() {
-  // State management for all form inputs
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [responsibilities, setResponsibilities] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+  });
 
-  // State to track which component is currently active
   const [currentComponent, setCurrentComponent] = useState("GeneralInfo");
 
-  // Function to render the current component
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [id]: value }));
+  };
+
   const renderComponent = () => {
     switch (currentComponent) {
       case "GeneralInfo":
-        return (
-          <GeneralInfo
-            firstName={firstName}
-            lastName={lastName}
-            email={email}
-            phone={phone}
-            setFirstName={setFirstName}
-            setLastName={setLastName}
-            setEmail={setEmail}
-            setPhone={setPhone}
-          />
-        );
+        return <GeneralInfo formData={formData} handleChange={handleChange} />;
       case "EducationalExp":
         return <EducationalExp />;
       case "PracticalExp":
-        return (
-          <PracticalExp
-            responsibilities={responsibilities}
-            setResponsibilities={setResponsibilities}
-          />
-        );
-      default:
-        return <GeneralInfo />;
+        return <PracticalExp />;
     }
   };
 
   return (
     <div>
-      {/* Render the current component */}
       {renderComponent()}
-
-      {/* Buttons to switch components */}
       <div>
         <button onClick={() => setCurrentComponent("GeneralInfo")}>
           General Info
