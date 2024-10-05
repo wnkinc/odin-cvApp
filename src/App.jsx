@@ -4,26 +4,48 @@ import EducationalExp from "./components/educationalExp.jsx";
 import PracticalExp from "./components/practicalExp.jsx";
 
 function App() {
-  const [formData, setFormData] = useState({
+  const [generalInfo, setGeneralInfo] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
   });
 
+  const [educationalExp, setEducationalExp] = useState({
+    schoolName: "",
+    studyTitle: "",
+    schoolStartYear: "",
+    schoolEndYear: "",
+  });
+
   const [currentComponent, setCurrentComponent] = useState("GeneralInfo");
 
-  const handleChange = (e) => {
+  const handleGeneralInfoChange = (e) => {
     const { id, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [id]: value }));
+    setGeneralInfo((prevData) => ({ ...prevData, [id]: value }));
+  };
+
+  const handleEducationalExpChange = (e) => {
+    const { id, value } = e.target;
+    setEducationalExp((prevData) => ({ ...prevData, [id]: value }));
   };
 
   const renderComponent = () => {
     switch (currentComponent) {
       case "GeneralInfo":
-        return <GeneralInfo formData={formData} handleChange={handleChange} />;
+        return (
+          <GeneralInfo
+            formData={generalInfo}
+            onChange={handleGeneralInfoChange}
+          />
+        );
       case "EducationalExp":
-        return <EducationalExp />;
+        return (
+          <EducationalExp
+            formData={educationalExp}
+            onChange={handleEducationalExpChange}
+          />
+        );
       case "PracticalExp":
         return <PracticalExp />;
     }

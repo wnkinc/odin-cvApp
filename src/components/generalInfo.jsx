@@ -1,7 +1,7 @@
 import "../styles.css";
 import PropTypes from "prop-types";
 
-function GeneralInfo({ formData, handleChange }) {
+function GeneralInfo({ formData, onChange }) {
   return (
     <form className="card">
       {["firstName", "lastName", "email", "phone"].map((field) => (
@@ -10,7 +10,7 @@ function GeneralInfo({ formData, handleChange }) {
           className="generalInfo"
           type={field === "email" ? "email" : "text"}
           value={formData[field]}
-          onChange={handleChange}
+          onChange={onChange}
           placeholder={`Enter your ${field}`}
           id={field}
           required
@@ -27,7 +27,7 @@ GeneralInfo.propTypes = {
     email: PropTypes.string,
     phone: PropTypes.string,
   }).isRequired,
-  handleChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default GeneralInfo;
